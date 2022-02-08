@@ -1,5 +1,9 @@
 package com.bizao.gestionvol.services.impl;
 
+import com.bizao.gestionvol.exceptions.EntityNotFoundException;
+import com.bizao.gestionvol.exceptions.ErrorCodes;
+import com.bizao.gestionvol.exceptions.InvalideEntityException;
+import com.bizao.gestionvol.validators.CountryValidator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import com.bizao.gestionvol.dto.CountryDTO;
@@ -27,6 +31,11 @@ public class CountryServiceImpl implements CountryService
     @Override
     public CountryDTO save(CountryDTO dto)
     {
+        List<String> errors = CountryValidator.validate(dto);
+        if(!errors.isEmpty()) {
+            log.error("Country not valid {}", dto);
+            throw new InvalideEntityException("L'objet Country n'est pas valide", ErrorCodes.COUNTRY_NOT_VALID);
+        }
         Country country = counterRepository.save(mapper.countryDTOtoCountry(dto));
         log.info("Création d'un nouveau pays, {}", country);
         return mapper.countryToCountryDTO(country);
@@ -35,9 +44,17 @@ public class CountryServiceImpl implements CountryService
     @Override
     public CountryDTO findById(Integer id)
     {
+        if(id == null) {
+            log.error("Country ID is null");
+            return null;
+        }
         Optional<Country> country = counterRepository.findById(id);
         log.info("Recherche d'un pays par son ID {}", id);
-        return country.map(mapper::countryToCountryDTO).orElse(null);
+        return country.map(mapper::countryToCountryDTO)
+                .orElseThrow(()-> new EntityNotFoundException(
+                        "Aucun pays avec l'ID = " + id + "n'a été trouvé",
+                        ErrorCodes.COUNTRY_NOT_FOUND
+                ));
     }
 
     @Override
