@@ -21,6 +21,9 @@ public class Flight extends AbstractEntity
 
     private Date landingDate;
 
+    @Transient
+    private Date duration;
+
     private String className;
 
     private double classPrice;
@@ -30,11 +33,12 @@ public class Flight extends AbstractEntity
     private Company company;
 
     @ManyToOne
-    @JoinColumn(name = "takeOffAirportId")
-    private Airport takeOffAirport;
+    @JoinColumn(name = "takeOffCityId")
+    private City takeOffCity;
 
     @ManyToOne
-    @JoinColumn(name = "landingAirportId")
-    private Airport landingAirport;
+    @JoinColumn(name = "landingCityId")
+    private City landingCity;
+
 
 }

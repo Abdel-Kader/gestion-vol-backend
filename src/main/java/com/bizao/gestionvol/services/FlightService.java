@@ -14,7 +14,7 @@ public interface FlightService extends AbstractService<FlightDTO>
 {
     FlightDTO findByFlightID(String flightID);
 
-    List<FlightDTO> comparePrice(Integer takeOffAirport, Integer landingAirport, Date takeOffDate);
+    List<FlightDTO> comparePrice(Integer takeOffCity, Integer landingCity, Date takeOffDate);
 
     List<FlightDTO> flightsByCompany(CompanyDTO companyDTO);
 

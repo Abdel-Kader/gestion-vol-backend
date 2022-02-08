@@ -36,7 +36,7 @@ public interface FlightAPI
     })
     List<FlightDTO> findAll();
 
-    @GetMapping(value = API_ROOT + "/flight/{takeOffAirport}/{landingAirport}/{date}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = API_ROOT + "/flight/{takeOffCity}/{landingCity}/{date}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to get flight comparaison by passing the take off date")
     @ApiResponses(value = {
             @ApiResponse(
@@ -48,8 +48,8 @@ public interface FlightAPI
                     description = "No flight found",
                     content = @Content)
     })
-    List<FlightDTO> compareFlight(@PathVariable("takeOffAirport") Integer takeOffAirport,
-                                  @PathVariable("landingAirport") Integer landingAirport,
+    List<FlightDTO> compareFlight(@PathVariable("takeOffCity") Integer takeOffAirport,
+                                  @PathVariable("landingCity") Integer landingAirport,
                                   @PathVariable("date") String date) throws ParseException;
 
     @GetMapping(value = API_ROOT + "/flight/{flightID}",

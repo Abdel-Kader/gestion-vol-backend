@@ -2,6 +2,7 @@ package com.bizao.gestionvol.dto;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
+import org.hibernate.annotations.Formula;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -20,11 +21,13 @@ public class FlightDTO
 
     private Date landingDate;
 
+    private Date duration;
+
     private CompanyDTO company;
 
-    private AirportDTO takeOffAirport;
+    private CityDTO takeOffCity;
 
-    private AirportDTO landingAirport;
+    private CityDTO landingCity;
 
     private String className;
 
