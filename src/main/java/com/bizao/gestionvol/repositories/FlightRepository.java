@@ -20,4 +20,6 @@ public interface FlightRepository extends JpaRepository<Flight, Integer>
 
     List<Flight> findByCompany(Company company);
 
+    List<Flight> findAllByOrderByClassPriceAsc();
+
 }

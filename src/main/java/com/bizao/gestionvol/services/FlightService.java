@@ -18,4 +18,5 @@ public interface FlightService extends AbstractService<FlightDTO>
 
     List<FlightDTO> flightsByCompany(CompanyDTO companyDTO);
 
+
 }

@@ -9,7 +9,6 @@ import com.bizao.gestionvol.mappers.AirportMapper;
 import com.bizao.gestionvol.repositories.AirportRepository;
 import com.bizao.gestionvol.services.AirportService;
 import com.bizao.gestionvol.validators.AirportValidator;
-import com.bizao.gestionvol.validators.CityValidator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

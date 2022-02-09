@@ -69,8 +69,8 @@ public class FlightServiceImpl implements FlightService
     @Override
     public List<FlightDTO> findAll()
     {
-        List<Flight> flightList = flightRepository.findAll();
-        log.info("Liste des vols {}", flightList);
+        List<Flight> flightList = flightRepository.findAllByOrderByClassPriceAsc();
+        log.info("Liste des vols classés par prix {}", flightList);
         return flightList.stream().map(mapper::flightToFlightDTO)
                 .collect(Collectors.toList());
     }

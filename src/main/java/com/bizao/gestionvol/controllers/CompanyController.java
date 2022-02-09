@@ -4,12 +4,14 @@ import com.bizao.gestionvol.controllers.api.CompanyAPI;
 import com.bizao.gestionvol.dto.CompanyDTO;
 import com.bizao.gestionvol.services.CompanyService;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class CompanyController implements CompanyAPI
 {
     private final CompanyService companyService;
