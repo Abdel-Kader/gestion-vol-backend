@@ -2,9 +2,9 @@ spring:
   application:
     name: flight-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/gestion-vol?createDatabaseIfNotExist=true
-    username: postgres
-    password: kzoldick
+    url: jdbc:postgresql://ec2-3-222-49-168.compute-1.amazonaws.com:5432/dca3t0tmjat8s8?createDatabaseIfNotExist=true
+    username: hfgseyixmtvxlr
+    password: 92e097c79e2459830bc26385ca77b06cb0a240dcab366ada4e53a7aacdb42cdf
   jpa:
     hibernate:
       ddl-auto: update
