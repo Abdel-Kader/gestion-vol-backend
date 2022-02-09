@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -20,7 +21,7 @@ public interface FlightAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to add a new Flight in DB")
-    FlightDTO saveFlight(@RequestBody FlightDTO dto);
+    ResponseEntity<FlightDTO> saveFlight(@RequestBody FlightDTO dto);
 
     @GetMapping(value = API_ROOT + "/flight/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to fetch all flights from DB")
@@ -34,7 +35,7 @@ public interface FlightAPI
                     description = "No flight found",
                     content = @Content)
     })
-    List<FlightDTO> findAll();
+    ResponseEntity<List<FlightDTO>> findAll();
 
     @GetMapping(value = API_ROOT + "/flight/{takeOffCity}/{landingCity}/{date}", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to get flight comparaison by passing the take off date")
@@ -48,7 +49,7 @@ public interface FlightAPI
                     description = "No flight found",
                     content = @Content)
     })
-    List<FlightDTO> compareFlight(@PathVariable("takeOffCity") Integer takeOffAirport,
+    ResponseEntity<List<FlightDTO>> compareFlight(@PathVariable("takeOffCity") Integer takeOffAirport,
                                   @PathVariable("landingCity") Integer landingAirport,
                                   @PathVariable("date") String date) throws ParseException;
 
@@ -65,5 +66,5 @@ public interface FlightAPI
                     description = "No flight found",
                     content = @Content)
     })
-    FlightDTO findByFlightID(@PathVariable("flightID") String flightID);
+    ResponseEntity<FlightDTO> findByFlightID(@PathVariable("flightID") String flightID);
 }

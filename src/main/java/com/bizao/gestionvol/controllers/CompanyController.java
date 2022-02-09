@@ -4,6 +4,7 @@ import com.bizao.gestionvol.controllers.api.CompanyAPI;
 import com.bizao.gestionvol.dto.CompanyDTO;
 import com.bizao.gestionvol.services.CompanyService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,14 +19,16 @@ public class CompanyController implements CompanyAPI
 
 
     @Override
-    public CompanyDTO saveCompany(CompanyDTO dto)
+    public ResponseEntity<CompanyDTO> saveCompany(CompanyDTO dto)
     {
-        return companyService.save(dto);
+        CompanyDTO company = companyService.save(dto);
+        return ResponseEntity.ok(company);
     }
 
     @Override
-    public List<CompanyDTO> findAll()
+    public ResponseEntity<List<CompanyDTO>> findAll()
     {
-        return companyService.findAll();
+        List<CompanyDTO> companyDTOList = companyService.findAll();
+        return ResponseEntity.ok(companyDTOList);
     }
 }

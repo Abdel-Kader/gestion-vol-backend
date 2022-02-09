@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,7 @@ public interface CountryAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to create a new Country in DB")
-    CountryDTO saveCountry(@RequestBody CountryDTO dto);
+    ResponseEntity<CountryDTO> saveCountry(@RequestBody CountryDTO dto);
 
     @GetMapping(value = API_ROOT + "/country/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to fetch all countries from DB")
@@ -35,6 +36,6 @@ public interface CountryAPI
                     description = "No country found",
                     content = @Content)
     })
-    List<CountryDTO> findAll();
+    ResponseEntity<List<CountryDTO>> findAll();
 
 }

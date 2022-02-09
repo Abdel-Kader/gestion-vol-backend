@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,7 @@ public interface CityAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to create a new City in DB")
-    CityDTO saveCity(@RequestBody CityDTO dto);
+    ResponseEntity<CityDTO> saveCity(@RequestBody CityDTO dto);
 
     @GetMapping(value = API_ROOT + "/city/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to fetch all cities from DB")
@@ -35,7 +36,7 @@ public interface CityAPI
                     description = "No City found",
                     content = @Content)
     })
-    List<CityDTO> findAll();
+    ResponseEntity<List<CityDTO>> findAll();
 
 
 }

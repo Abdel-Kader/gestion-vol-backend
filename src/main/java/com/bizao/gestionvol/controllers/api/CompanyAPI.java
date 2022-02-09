@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ public interface CompanyAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to create a new Company in DB")
-    CompanyDTO saveCompany(@RequestBody CompanyDTO dto);
+    ResponseEntity<CompanyDTO> saveCompany(@RequestBody CompanyDTO dto);
 
     @GetMapping(value = API_ROOT + "/company/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to fetch all companies from DB")
@@ -34,5 +35,5 @@ public interface CompanyAPI
                     description = "No company found",
                     content = @Content)
     })
-    List<CompanyDTO> findAll();
+    ResponseEntity<List<CompanyDTO>> findAll();
 }

@@ -6,7 +6,6 @@ import com.bizao.gestionvol.entities.Flight;
 import com.bizao.gestionvol.exceptions.EntityNotFoundException;
 import com.bizao.gestionvol.exceptions.ErrorCodes;
 import com.bizao.gestionvol.exceptions.InvalideEntityException;
-import com.bizao.gestionvol.mappers.AirportMapper;
 import com.bizao.gestionvol.mappers.CompanyMapper;
 import com.bizao.gestionvol.mappers.FlightMapper;
 import com.bizao.gestionvol.repositories.FlightRepository;
@@ -34,8 +33,6 @@ public class FlightServiceImpl implements FlightService
     private final FlightMapper mapper;
 
     private final CompanyMapper companyMapper;
-
-    private final AirportMapper airportMapper;
 
     @Override
     public FlightDTO save(FlightDTO dto)

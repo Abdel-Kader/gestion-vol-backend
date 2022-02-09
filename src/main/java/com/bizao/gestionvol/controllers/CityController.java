@@ -4,6 +4,7 @@ import com.bizao.gestionvol.controllers.api.CityAPI;
 import com.bizao.gestionvol.dto.CityDTO;
 import com.bizao.gestionvol.services.CityService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,14 +18,16 @@ public class CityController implements CityAPI
     private final CityService cityService;
 
     @Override
-    public CityDTO saveCity(CityDTO dto)
+    public ResponseEntity<CityDTO> saveCity(CityDTO dto)
     {
-        return cityService.save(dto);
+        CityDTO city = cityService.save(dto);
+        return ResponseEntity.ok(city);
     }
 
     @Override
-    public List<CityDTO> findAll()
+    public ResponseEntity<List<CityDTO>> findAll()
     {
-        return cityService.findAll();
+        List<CityDTO> cityDTOList = cityService.findAll();
+        return ResponseEntity.ok(cityDTOList);
     }
 }
