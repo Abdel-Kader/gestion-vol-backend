@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.bizao.gestionvol.utils.Constants.API_ROOT;
@@ -21,7 +22,7 @@ public interface CompanyAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to create a new Company in DB")
-    ResponseEntity<CompanyDTO> saveCompany(@RequestBody CompanyDTO dto);
+    ResponseEntity<CompanyDTO> saveCompany(@Valid @RequestBody CompanyDTO dto);
 
     @GetMapping(value = API_ROOT + "/company/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to fetch all companies from DB")

@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.text.ParseException;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface FlightAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to add a new Flight in DB")
-    ResponseEntity<FlightDTO> saveFlight(@RequestBody FlightDTO dto);
+    ResponseEntity<FlightDTO> saveFlight(@Valid @RequestBody FlightDTO dto);
 
     @GetMapping(value = API_ROOT + "/flight/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to fetch all flights from DB")

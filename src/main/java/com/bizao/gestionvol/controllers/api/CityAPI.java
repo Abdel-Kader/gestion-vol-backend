@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.bizao.gestionvol.utils.Constants.API_ROOT;
@@ -22,7 +23,7 @@ public interface CityAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to create a new City in DB")
-    ResponseEntity<CityDTO> saveCity(@RequestBody CityDTO dto);
+    ResponseEntity<CityDTO> saveCity(@Valid @RequestBody CityDTO dto);
 
     @GetMapping(value = API_ROOT + "/city/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to fetch all cities from DB")

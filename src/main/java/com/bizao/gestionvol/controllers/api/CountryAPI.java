@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.bizao.gestionvol.utils.Constants.API_ROOT;
@@ -22,7 +23,7 @@ public interface CountryAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to create a new Country in DB")
-    ResponseEntity<CountryDTO> saveCountry(@RequestBody CountryDTO dto);
+    ResponseEntity<CountryDTO> saveCountry(@Valid @RequestBody CountryDTO dto);
 
     @GetMapping(value = API_ROOT + "/country/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to fetch all countries from DB")
