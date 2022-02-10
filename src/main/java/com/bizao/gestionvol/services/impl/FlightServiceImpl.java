@@ -40,28 +40,13 @@ public class FlightServiceImpl implements FlightService
         List<String> errors = FlightValidator.validate(dto);
         if(!errors.isEmpty()) {
             log.error("Flight not valid {}", dto);
-            throw new InvalideEntityException("L'objet Flight n'est pas valide", ErrorCodes.FLIGHT_NOT_VALID);
+            throw new InvalideEntityException("L'objet Flight n'est pas valide !", ErrorCodes.FLIGHT_NOT_VALID, errors);
         }
         Flight flight = flightRepository.save(mapper.flightDTOtoFlight(dto));
         log.info("Création d'un nouveau vol, {}", flight);
         return mapper.flightToFlightDTO(flight);
     }
 
-    @Override
-    public FlightDTO findById(Integer id)
-    {
-        if(id == null) {
-            log.error("Flight ID is null");
-            return null;
-        }
-        Optional<Flight> flight = flightRepository.findById(id);
-        log.info("Recherche d'un vol par son ID {}", id);
-        return flight.map(mapper::flightToFlightDTO)
-                .orElseThrow(()-> new EntityNotFoundException(
-                "Aucun vol avec l'ID = " + id + "n'a été trouvé",
-                ErrorCodes.FLIGHT_NOT_FOUND
-        ));
-    }
 
     @Override
     public List<FlightDTO> findAll()
@@ -81,10 +66,10 @@ public class FlightServiceImpl implements FlightService
             return null;
         }
         Optional<Flight> flight = flightRepository.findByFlightID(flightID);
-        log.info("Recherche d'un vol par son numéro {}", flightID);
+        log.info("Recherche du vol ayant le numéro de vol {}", flightID);
         return flight.map(mapper::flightToFlightDTO)
                 .orElseThrow(()-> new EntityNotFoundException(
-                        "Aucun vol avec le numéro = " + flightID + "n'a été trouvé",
+                        "Aucun vol avec le numéro = " + flightID + " n'a été trouvé",
                         ErrorCodes.FLIGHT_NOT_FOUND
                 ));
     }
@@ -107,9 +92,4 @@ public class FlightServiceImpl implements FlightService
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public void delete(Integer id)
-    {
-
-    }
 }

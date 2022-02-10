@@ -23,19 +23,27 @@ public interface CityAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to create a new City in DB")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "City created successfully",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Arguments are not valid",
+                    content = @Content)
+    })
     ResponseEntity<CityDTO> saveCity(@Valid @RequestBody CityDTO dto);
+
+
 
     @GetMapping(value = API_ROOT + "/city/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to fetch all cities from DB")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Fetched All the cities",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "No City found",
-                    content = @Content)
+                    description = "Fetched All the cities or Empty array if no city found",
+                    content = {@Content(mediaType = "application/json")})
     })
     ResponseEntity<List<CityDTO>> findAll();
 

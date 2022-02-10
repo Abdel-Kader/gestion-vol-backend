@@ -22,19 +22,27 @@ public interface CompanyAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to create a new Company in DB")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Company created successfully",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Arguments are not valid",
+                    content = @Content)
+    })
     ResponseEntity<CompanyDTO> saveCompany(@Valid @RequestBody CompanyDTO dto);
+
+
 
     @GetMapping(value = API_ROOT + "/company/list", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This allow you to fetch all companies from DB")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Fetched All the companies",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "No company found",
-                    content = @Content)
+                    description = "Fetched All the companies or Empty array if no company found",
+                    content = {@Content(mediaType = "application/json")})
     })
     ResponseEntity<List<CompanyDTO>> findAll();
 }

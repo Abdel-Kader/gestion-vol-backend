@@ -22,6 +22,16 @@ public interface FlightAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to add a new Flight in DB")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Flight created successfully",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Arguments are not valid",
+                    content = @Content)
+    })
     ResponseEntity<FlightDTO> saveFlight(@Valid @RequestBody FlightDTO dto);
 
     @GetMapping(value = API_ROOT + "/flight/list", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -32,27 +42,25 @@ public interface FlightAPI
                     description = "Fetched All the flights",
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(
-                    responseCode = "404",
-                    description = "No flight found",
+                    responseCode = "200",
+                    description = "Empty array if no flight found",
                     content = @Content)
     })
     ResponseEntity<List<FlightDTO>> findAll();
 
     @GetMapping(value = API_ROOT + "/flight/{takeOffCity}/{landingCity}/{date}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @Operation(summary = "This allow you to get flight comparaison by passing the take off date")
+    @Operation(summary = "This allow you to find flights according to your parameters")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Fetched flight details",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "No flight found",
-                    content = @Content)
+                    description = "Flight list ordered by price or Empty array if no flight found",
+                    content = {@Content(mediaType = "application/json")})
     })
     ResponseEntity<List<FlightDTO>> compareFlight(@PathVariable("takeOffCity") Integer takeOffAirport,
                                   @PathVariable("landingCity") Integer landingAirport,
                                   @PathVariable("date") String date) throws ParseException;
+
+
 
     @GetMapping(value = API_ROOT + "/flight/{flightID}",
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -64,7 +72,7 @@ public interface FlightAPI
                     content = {@Content(mediaType = "application/json")}),
             @ApiResponse(
                     responseCode = "404",
-                    description = "No flight found",
+                    description = "No flight found with the FlightID",
                     content = @Content)
     })
     ResponseEntity<FlightDTO> findByFlightID(@PathVariable("flightID") String flightID);

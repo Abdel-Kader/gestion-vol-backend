@@ -23,6 +23,16 @@ public interface CountryAPI
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "This endpoint allow you to create a new Country in DB")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Country created successfully",
+                    content = {@Content(mediaType = "application/json")}),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Arguments are not valid",
+                    content = @Content)
+    })
     ResponseEntity<CountryDTO> saveCountry(@Valid @RequestBody CountryDTO dto);
 
     @GetMapping(value = API_ROOT + "/country/list", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,12 +40,8 @@ public interface CountryAPI
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Fetched All the countries",
-                    content = {@Content(mediaType = "application/json")}),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "No country found",
-                    content = @Content)
+                    description = "Fetched All the countries or Empty array if no country found",
+                    content = {@Content(mediaType = "application/json")})
     })
     ResponseEntity<List<CountryDTO>> findAll();
 
