@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://kind-ardinghelli-54180a.netlify.app")
 public class FlightController implements FlightAPI
 {
     private final FlightService flightService;
