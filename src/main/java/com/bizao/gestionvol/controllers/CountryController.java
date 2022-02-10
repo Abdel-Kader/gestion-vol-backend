@@ -5,12 +5,14 @@ import com.bizao.gestionvol.dto.CountryDTO;
 import com.bizao.gestionvol.services.CountryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "https://kind-ardinghelli-54180a.netlify.app")
 public class CountryController implements CountryAPI
 {
     private final CountryService countryService;

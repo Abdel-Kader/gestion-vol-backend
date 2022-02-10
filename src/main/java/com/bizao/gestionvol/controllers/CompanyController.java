@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://kind-ardinghelli-54180a.netlify.app")
 public class CompanyController implements CompanyAPI
 {
     private final CompanyService companyService;
