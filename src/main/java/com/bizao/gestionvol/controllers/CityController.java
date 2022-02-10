@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "https://kind-ardinghelli-54180a.netlify.app")
+@CrossOrigin(origins = "https://modest-almeida-7084e6.netlify.app")
 public class CityController implements CityAPI
 {
     private final CityService cityService;
