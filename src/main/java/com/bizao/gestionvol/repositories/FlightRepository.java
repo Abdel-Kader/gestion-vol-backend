@@ -15,7 +15,7 @@ public interface FlightRepository extends JpaRepository<Flight, Integer>
     Optional<Flight> findByFlightID(String flightID);
 
     @Query(nativeQuery = true, value = "SELECT * FROM flight f WHERE f.take_off_city_id = :takeOffCity AND f.landing_city_id = :landingCity " +
-            "AND f.take_off_date = :takeOffDate ORDER BY f.class_price")
+            "AND date(f.take_off_date) = date(:takeOffDate) ORDER BY f.class_price")
     List<Flight> flightPriceComparaison(@Param("takeOffCity") Integer takeOffCity, @Param("landingCity") Integer landingCity, @Param("takeOffDate") Date takeOffDate);
 
     List<Flight> findByCompany(Company company);
