@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 import static com.bizao.gestionvol.utils.Constants.API_ROOT;
+
 public interface CompanyAPI
 {
     @PostMapping(
