@@ -1,6 +1,10 @@
 package com.bizao.gestionvol.utils;
 
-public interface Constants
+public class Constants
 {
-    public static String API_ROOT = "gestionvol/v1";
+    private Constants()
+    {
+    }
+
+    public static final String API_ROOT = "gestionvol/v1";
 }
